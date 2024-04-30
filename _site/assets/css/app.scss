@@ -1,0 +1,8 @@
+﻿// Custom Defs
+$yellow: hsl(49, 100%, 50%);
+$turquoise: hsl(187, 92%, 37%);
+// Overrides
+$primary:$black-ter;
+$background:$yellow;
+// Import Main CSS file from theme
+@import "main";
