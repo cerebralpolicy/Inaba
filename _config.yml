@@ -2,5 +2,6 @@
 description: To do.
 remote_theme: chrisrhymes/bulma-clean-theme
 permalink: pretty
+theme_color: '#212121'
 
 url: https://cerebralpolicy.github.io/WHII
