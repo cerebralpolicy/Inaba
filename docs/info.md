@@ -1,4 +1,4 @@
-﻿---
+---
 layout: page
 title: About WHII
 subtitle: The page subtitle
