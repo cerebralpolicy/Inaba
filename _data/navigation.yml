@@ -1,2 +1,9 @@
 ﻿- name: About WHII
   link: /info/
+- name: Roles
+  link: /characters/
+  dropdown: 
+    - name: Main Roles
+      link: /characters/main/
+    - name: Recurring Roles
+      link: /characters/recurring/

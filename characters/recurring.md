@@ -1,8 +1,6 @@
 ---
 layout: page
-title: What Happens in Inaba
-subtitle: The page subtitle
+title: Recurring Roles
+subtitle: Roles that I will eventually need filled.
 description: This is the meta description for this page and will help it appear in search engines
 ---
-
-What Happens in Inaba.
