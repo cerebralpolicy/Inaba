@@ -1,6 +1,5 @@
---- 
 ---
-
+---
 // Custom Defs
 $yellow: hsl(49, 100%, 50%);
 $turquoise: hsl(187, 92%, 37%);
@@ -8,6 +7,14 @@ $turquoise: hsl(187, 92%, 37%);
 // Overrides
 $primary: #212121;
 $background: #ffd000;
+
+html, body {
+    background-color: #ffd000;
+}
+
+.footer {
+    background-color: #ffd000;
+}
 
 // Import Main CSS file from theme
 @import "main";
