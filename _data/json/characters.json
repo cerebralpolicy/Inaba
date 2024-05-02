@@ -12,7 +12,21 @@
                 "Cynical",
                 "Petty"
             ],
-            "Bio": "Now #AGE#, #GIVEN# #FAMILY# spends her days managing her seemingly forgotten family inn. Stuck in the past, she has held onto a petty grudge against her high school boyfriend, Yu Narukami. Over the years #GIVEN# has become a cynical woman with no moral compass."
-        }
+            "Bio": "Now #AGE#, #GIVEN# #FAMILY# spends her days managing her seemingly forgotten family inn. Stuck in the past, she has held onto a petty grudge against her high school boyfriend, Yu Narukami, for over a decade. This, however, has come at the cost of #GIVEN#'s relationships with her friends and family."
+        },
+        {
+            "Name_EN": "Kotone Narukami",
+            "Name_JP": "鳴上琴音",
+            "Filename": "Kotone_Narukami",
+            "Type": "Main",
+            "Born": "1993-02-07",
+            "Traits": [
+                "Calm",
+                "Patient",
+                "Scatterbrained",
+                "Upbeat"
+            ],
+            "Bio": "A teacher at the local middle school, #GIVEN# moved to Inaba alongside her husband, Yu, back in 2015. Originally from Nagano, #GIVEN#"
+        },
     ]
 }
