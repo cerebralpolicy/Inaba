@@ -1,0 +1,46 @@
+{%- assign charFilter = site.data.json.characters.main | where: "Name_EN",
+include.get -%} {%- for character in charFilter -%} {%- assign char =
+character -%} {%- assign TZ = "Japan" -%} {%- assign Birthday = char.Born |
+date: "%B %-e, %Y" -%} {%- assign Birth = char.Born | date: "%s" -%} {%- assign
+SetIn = "2023-05-01"| date: "%s" -%} {%- assign Age = SetIn | minus: Birth |
+date: "%Y" | times:1 | minus: 1970 -%}
+<div class="charbio pseudo-elem">
+  <div class="infobox">
+    <table>
+      <tr>
+        <th colspan="2">{{char.Name_EN}}</th>
+      </tr>
+      <tr>
+        <td colspan="2">{{char.Name_JP}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <img src="..\..\assets\images\{{char.Filename}}.png" width="256" />
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">Bio</th>
+      </tr>
+      <tr>
+        <th>Born</th>
+        <td>{{Birthday}}<br/>({{Age}} years old)</td>
+      </tr>
+      <tr>
+        <th>Characteristics</th>
+        <td>
+          {%- for trait in char.Traits %} {{trait}}<br/>
+          {%-endfor%}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="minibio">
+    <h1>{{char.Name_EN}}</h1>
+    <p>
+      {%- assign NameArray = char.Name_EN | split: ' ' -%} {%- assign Given =
+      NameArray[0] -%} {%- assign Family = NameArray[1] -%} {{char.Bio| replace:
+      '#AGE#', Age| replace: '#GIVEN#', Given| replace: '#FAMILY#', Family | replace: '#NL#', '<br/>'}}
+    </p>
+  </div>
+</div>
+{%endfor%}
