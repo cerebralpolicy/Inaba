@@ -2,8 +2,8 @@
  "[markdown]": {
      "editor.quickSuggestions":{
         "other": "on",
-        "comments": "off",
-        "strings": "off"
+        "comments": "on",
+        "strings": "on"
      }
   },
   "files.autoGuessEncoding": true,    

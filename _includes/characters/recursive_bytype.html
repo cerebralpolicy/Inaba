@@ -2,9 +2,12 @@
   {%- assign lookup = 'Main' -%}
   {%- unless include.get == blank -%}
     {%- assign lookup = {{include.lookup}} -%}
-    {%- assign db = site.data.json.characters.db -%}
+    {%- assign db = site.data.json.characters.db | where: 'Type', lookup -%}
+  {%- else -%}
+    {%- assign db = db | where: 'Type', lookup -%}
   {%- endunless -%}
 {%- comment -%}<!-- Assign Character -->{%- endcomment -%}
-{%- for character in db | where: 'Type', Lookup | sort: 'Appears' -%}
-    code
+{%- for character in db -%}
+    {%- assign ID = character.ID -%}
+    {%- include characters/single_byname.html get = ID -%}
 {%- endfor -%}

@@ -1,108 +1,121 @@
 {%- comment -%}<!-- Assign Character -->{%- endcomment -%}
-  {%- assign lookup = 'Yukiko_Amagi' -%}
-  {%- unless include.get == blank -%}
+  {%- unless include.get == nil -%}
+    {%- assign test = "Dynamic" -%}
     {%- assign lookup = {{include.get}} -%}
-    {%- assign db = site.data.json.characters.db -%}
+    {%- assign db = site.data.json.characters.db | where: 'ID', lookup -%}
+  {%- else -%}
+    {%- assign test = "Static" -%}
+    {%- assign lookup = 'Yukiko_Amagi' -%}
+    {%- assign db = db -%}
   {%- endunless -%}
 {%- comment -%}<!-- Assign Character -->{%- endcomment -%}
-{%- assign char = db[lookup] -%}
-{%- assign TZ = "Japan" -%} 
-{%- assign Birthday = char.Born | date: "%B %e, %Y"| replace: '  ', ' ' -%} 
-{%- assign Birth = char.Born | date: "%s" -%} 
-{%- assign SetIn = "2023-05-01"| date: "%s" -%}
-{%- assign Age = SetIn | minus: Birth | date: "%Y" | times:1 | minus: 1970 -%}
-<div class="charbio pseudo-elem">
-  {%- capture infobox %}
-  <div class="infobox">
-    <table>
-      <tr>
-        <th colspan="2">{{char.Name_EN['Given']}} {{char.Name_EN['Family']}}</th>
-      </tr>
-      <tr>
-        <td colspan="2">{{char.Name_JP}}</td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <img src="..\..\assets\images\{{char.Filename}}.png" width="128" />
-        </td>
-      </tr>
-      <tr>
-        <th colspan="2">Bio</th>
-      </tr>
-      <tr>
-        <th>Born</th>
-        <td>{{Birthday}}<br/>({{Age}} years old)</td>
-      </tr>
-      <tr>
-        <th>Characteristics</th>
-        <td>
-          {%- for trait in char.Traits %}
-          {{trait}}<br/>
-          {%-endfor%}
-        </td>
-      </tr>
-    </table>
-  </div>
- {%- endcapture %}
- {%- capture minibioL %}
-  <div class="minibio">
-    {%- assign GIVEN = char.Name_EN['Given'] -%}
-    {%- assign FAMILY = char.Name_EN['Family'] -%}
-    {%- assign FULL = GIVEN| append:' '| append: FAMILY -%}
-    {%- capture markdown -%}
-    # {{FULL}}
+{%- for char in db -%}
+  {%- assign TZ = "Japan" -%} 
+  {%- assign Birthday = char.Born | date: "%B %e, %Y"| replace: '  ', ' ' -%} 
+  {%- assign Birth = char.Born | date: "%s" -%} 
+  {%- assign SetIn = "2023-05-01"| date: "%s" -%}
+  {%- assign Age = SetIn | minus: Birth | date: "%Y" | times:1 | minus: 1970 -%}
+  <div class="charbio pseudo-elem">
+    {%- capture infobox %}
+    <div class="infobox">
+      <table>
+        <tr>
+          <th colspan="2">{{char.Name_EN['Given']}} {{char.Name_EN['Family']}}</th>
+        </tr>
+        <tr>
+          <td colspan="2">{{char.Name_JP}}</td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <img src="..\..\assets\images\{{char.ID}}.png" width="128" />
+          </td>
+        </tr>
+        <tr>
+          <th colspan="2">Bio</th>
+        </tr>
+        <tr>
+          <th>Born</th>
+          <td>{{Birthday}}<br/>({{Age}} years old)</td>
+        </tr>
+        <tr>
+          <th>Characteristics</th>
+          <td>
+            {%- for trait in char.Traits %}
+            {{trait}}<br/>
+            {%-endfor%}
+          </td>
+        </tr>
+      </table>
+    </div>
+  {%- endcapture %}
+  {%- capture minibioL %}
+    <div class="minibio">
+      {%- assign GIVEN = char.Name_EN['Given'] -%}
+      {%- assign FAMILY = char.Name_EN['Family'] -%}
+      {%- assign FULL = GIVEN| append:' '| append: FAMILY -%}
+      {%- capture markdown -%}
+      # {{FULL}}
+      {%- endcapture -%}
+      {%- assign head = markdown| markdownify %}
+      {{head}}
+      <hr>
+      {%- if char.Name_EN['Maiden'] -%}
+          {%- assign MAIDEN = char.Name_EN['Maiden'] -%}
+          {%- unless MAIDEN contains '-' -%}
+              {%- assign FULL = FULL | append:', née '| append: MAIDEN | append:',' -%}
+          {%- endunless -%}
+      {%- endif %}
+      {%- if char.Bio -%}
+        <p>{{char.Bio|replace: '%AGE%', Age | replace: '%FULL%', FULL | replace: '%GIVEN%', GIVEN | replace: '%FAMILY%', FAMILY}}</p>
+      {%- else -%}
+        <p>No summary... <i>yet.</i></p>
+      {%- endif -%}
+    </div>
     {%- endcapture -%}
-    {%- assign head = markdown| markdownify %}
-    {{head}}
-    <hr>
-    {%- if char.Name_EN['Maiden'] -%}
-        {%- assign MAIDEN = char.Name_EN['Maiden'] -%}
-        {%- unless MAIDEN contains '-' -%}
-            {%- assign FULL = FULL | append:', née '| append: MAIDEN | append:',' -%}
-        {%- endunless -%}
-    {%- endif %}
-    <p>{{char.Bio|replace: '%AGE%', Age | replace: '%FULL%', FULL | replace: '%GIVEN%', GIVEN | replace: '%FAMILY%', FAMILY}}</p>
-  </div>
-  {%- endcapture -%}
-  {%- capture minibioR -%}
-  <div class="minibioR">
-    {%- assign GIVEN = char.Name_EN['Given'] -%}
-    {%- assign FAMILY = char.Name_EN['Family'] -%}
-    {%- assign FULL = GIVEN| append:' '| append: FAMILY -%}
-    {%- capture markdown -%}
-    # {{FULL}}
+    {%- capture minibioR -%}
+    <div class="minibioR">
+      {%- assign GIVEN = char.Name_EN['Given'] -%}
+      {%- assign FAMILY = char.Name_EN['Family'] -%}
+      {%- assign FULL = GIVEN| append:' '| append: FAMILY -%}
+      {%- capture markdown -%}
+      # {{FULL}}
+      {%- endcapture -%}
+      {%- assign head = markdown| markdownify -%}
+      {{head}}
+      <hr>
+      {%- if char.Name_EN['Maiden'] -%}
+          {%- assign MAIDEN = char.Name_EN['Maiden'] -%}
+          {%- unless MAIDEN contains '-' -%}
+              {%- assign FULL = FULL | append:', née '| append: MAIDEN | append:',' -%}
+          {%- endunless -%}
+      {%- endif %}
+      {%- if char.Bio -%}
+        <p>{{char.Bio|replace: '%AGE%', Age | replace: '%FULL%', FULL | replace: '%GIVEN%', GIVEN | replace: '%FAMILY%', FAMILY}}</p>
+      {%- else -%}
+        <p>No summary... <i>yet.</i></p>
+      {%- endif -%}
+    </div>
     {%- endcapture -%}
-    {%- assign head = markdown| markdownify -%}
-    {{head}}
-    <hr>
-    {%- if char.Name_EN['Maiden'] -%}
-        {%- assign MAIDEN = char.Name_EN['Maiden'] -%}
-        {%- unless MAIDEN contains '-' -%}
-            {%- assign FULL = FULL | append:', née '| append: MAIDEN | append:',' -%}
-        {%- endunless -%}
+    {%- capture bioR -%}    
+      {{minibioR}}
+      {{-infobox}}
+    {%- endcapture -%}
+    {%- capture bioL -%}
+      {{infobox}}
+      {{-minibioL}}
+    {%- endcapture -%}
+    {%- if include.box == "right" -%}
+      {%- if page.anchorHeads -%}
+        {% include anchor_headings.html html=bioR anchorBody="#" beforeHeading=true %}
+      {%- else -%}
+        {{bioR}}
+      {%- endif -%}
+    {%- else -%}
+      {%- if page.anchorHeads -%}
+        {% include anchor_headings.html html=bioL anchorBody="#" %}
+      {%- else -%}
+        {{bioL}}
+      {%- endif -%}
     {%- endif %}
-    <p>{{char.Bio|replace: '%AGE%', Age | replace: '%FULL%', FULL | replace: '%GIVEN%', GIVEN | replace: '%FAMILY%', FAMILY}}</p>
   </div>
-  {%- endcapture -%}
-  {%- capture bioR -%}    
-    {{minibioR}}
-    {{-infobox}}
-  {%- endcapture -%}
-  {%- capture bioL -%}
-    {{infobox}}
-    {{-minibioL}}
-  {%- endcapture -%}
-  {%- if include.box == "right" -%}
-    {%- if page.anchorHeads -%}
-      {% include anchor_headings.html html=bioR anchorBody="#" beforeHeading=true %}
-    {%- else -%}
-      {{bioR}}
-    {%- endif -%}
-  {%- else -%}
-    {%- if page.anchorHeads -%}
-      {% include anchor_headings.html html=bioL anchorBody="#" %}
-    {%- else -%}
-      {{bioL}}
-    {%- endif -%}
-  {%- endif %}
-</div>
+{%- endfor -%}
