@@ -1,64 +1,63 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://cerebralpolicy.github.io/WHII/data/json/characters.schema.json",
-  "category": {
-      "type": "object",
-      "properties": {
-        "Character": {
-          "type": "object",
-          "properties": {
-            "Name_EN": {
-              "type": "object",
-              "properties": {
-                "Given": {
-                  "type": "string"
-                },
-                "Family": {
-                  "type": "string"
-                },
-                "Maiden": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "Given",
-                "Family"
-              ]
-            },
-            "Name_JP": {
-              "type": "string"
-            },
-            "Filename": {
-              "type": "string"
-            },
-            "Type": {
-              "type": "string"
-            },
-            "Born": {
-              "type": "string"
-            },
-            "Traits": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "minItems": 1,
-              "uniqueItems": true
-            },
-            "Bio": {
-              "type": "string"
-            }
+  "$id": "http://cerebralpolicy.github.io/WHII/characters.schema.json",
+  "Character": {
+    "type": "object",
+    "properties": {
+      "Name_EN": {
+        "type": "object",
+        "properties": {
+          "Given": {
+            "type": "string"
           },
-          "required": [
-            "Name_EN",
-            "Name_JP",
-            "Filename",
-            "Type",
-            "Born",
-            "Traits",
-            "Bio"
-          ]
-        }
+          "Family": {
+            "type": "string"
+          },
+          "Maiden": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Given",
+          "Family"
+        ]
+      },
+      "Name_JP": {
+        "type": "string"
+      },
+      "Filename": {
+        "type": "string"
+      },
+      "Type": {
+        "type": "string"
+      },
+      "Born": {
+        "type": "string"
+      },
+      "Traits": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "Appears": {
+        "type": "number"
+      },
+      "Bio": {
+        "type": "string"
       }
+    },
+    "required": [
+      "Name_EN",
+      "Name_JP",
+      "Filename",
+      "Type",
+      "Born",
+      "Traits",
+      "Appears",
+      "Bio"
+    ]
   }
 }

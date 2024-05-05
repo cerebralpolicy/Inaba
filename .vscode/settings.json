@@ -1,8 +1,18 @@
 {
-    "files.autoGuessEncoding": true
-}
-{
  "[markdown]": {
-     "editor.quickSuggestions": true
-  }
+     "editor.quickSuggestions":{
+        "other": "on",
+        "comments": "off",
+        "strings": "off"
+     }
+  },
+  "files.autoGuessEncoding": true,    
+  "json.schemas": [
+        {
+            "fileMatch": [
+                "**/characters.json"
+            ],
+            "url": "./characters.schema.json"
+        }
+    ],
 }

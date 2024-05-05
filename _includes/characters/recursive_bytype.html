@@ -1,0 +1,10 @@
+{%- comment -%}<!-- Assign Character -->{%- endcomment -%}
+  {%- assign lookup = 'Main' -%}
+  {%- unless include.get == blank -%}
+    {%- assign lookup = {{include.lookup}} -%}
+    {%- assign db = site.data.json.characters.db -%}
+  {%- endunless -%}
+{%- comment -%}<!-- Assign Character -->{%- endcomment -%}
+{%- for character in db | where: 'Type', Lookup | sort: 'Appears' -%}
+    code
+{%- endfor -%}

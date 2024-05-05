@@ -1,15 +1,18 @@
-{%- assign lookup = 'Yukiko_Amagi' -%}
-{%- unless include.get == empty -%}
-  {%- assign lookup = {{include.get}} -%}
-{%- endunless -%}
-{%- assign char = site.data.json.characters.main[lookup] -%}
+{%- comment -%}<!-- Assign Character -->{%- endcomment -%}
+  {%- assign lookup = 'Yukiko_Amagi' -%}
+  {%- unless include.get == blank -%}
+    {%- assign lookup = {{include.get}} -%}
+    {%- assign db = site.data.json.characters.db -%}
+  {%- endunless -%}
+{%- comment -%}<!-- Assign Character -->{%- endcomment -%}
+{%- assign char = db[lookup] -%}
 {%- assign TZ = "Japan" -%} 
-{%- assign Birthday = char.Born | date: "%B %e, %Y"| | replace: '  ', ' ' }} -%} 
+{%- assign Birthday = char.Born | date: "%B %e, %Y"| replace: '  ', ' ' -%} 
 {%- assign Birth = char.Born | date: "%s" -%} 
 {%- assign SetIn = "2023-05-01"| date: "%s" -%}
 {%- assign Age = SetIn | minus: Birth | date: "%Y" | times:1 | minus: 1970 -%}
 <div class="charbio pseudo-elem">
-  {%- capture infobox -%}
+  {%- capture infobox %}
   <div class="infobox">
     <table>
       <tr>
@@ -40,8 +43,8 @@
       </tr>
     </table>
   </div>
-  {%- endcapture -%}
-  {%- capture minibioL -%}
+ {%- endcapture %}
+ {%- capture minibioL %}
   <div class="minibio">
     {%- assign GIVEN = char.Name_EN['Given'] -%}
     {%- assign FAMILY = char.Name_EN['Family'] -%}
@@ -49,7 +52,7 @@
     {%- capture markdown -%}
     # {{FULL}}
     {%- endcapture -%}
-    {%- assign head = markdown| markdownify -%}
+    {%- assign head = markdown| markdownify %}
     {{head}}
     <hr>
     {%- if char.Name_EN['Maiden'] -%}
@@ -83,11 +86,11 @@
   {%- endcapture -%}
   {%- capture bioR -%}    
     {{minibioR}}
-    {{infobox}}
+    {{-infobox}}
   {%- endcapture -%}
   {%- capture bioL -%}
     {{infobox}}
-    {{minibioL}}
+    {{-minibioL}}
   {%- endcapture -%}
   {%- if include.box == "right" -%}
     {%- if page.anchorHeads -%}
@@ -101,5 +104,5 @@
     {%- else -%}
       {{bioL}}
     {%- endif -%}
-  {%- endif -%}
+  {%- endif %}
 </div>

@@ -1,5 +1,5 @@
 { 
-    "main": {
+    "db": {
         "Yukiko_Amagi": {
             "Name_EN": {
                 "Given": "Yukiko",
@@ -15,6 +15,7 @@
                 "Cynical",
                 "Petty"
             ],
+            "Appears": 1,
             "Bio": "Now %AGE%, %FULL% spends her days managing her seemingly forgotten family inn. Stuck in the past, she has held onto a petty grudge against her high school boyfriend, Yu Narukami, for over a decade. This, however, has come at the cost of %GIVEN%'s relationships with her friends and family.<br/><br/>Today the only people who are willing to associate with her are Nanako Dojima - %GIVEN%'s only employee and Yu's cousin - and Chie Satonaka, her best friend growing up. This is due to her constant negativity and mean spirited behaviour. Between drinking and taking out her frustrations on others, she does not have particularly healthy coping mechanisms."
         },
         "Nanako_Dojima":{
@@ -52,8 +53,5 @@
             ],
             "Bio": "A teacher at the local middle school, %AGE% year old %FULL% moved to Inaba alongside her husband, Yu, back in 2015. They live together with their seven year old daughter, Miika, in a decently sized duplex. Originally from Nagano, %GIVEN% developed a fascination with both winter sports (ice hockey in particular) and Canada after the 1998 Winter Olympics - a fascination inherited by Miika, an inexplicably gifted athlete who plays for the prefectural Girls' U12 team.<br/><br/>Born to a well off (if not privileged) family, %GIVEN% can sometimes come across as aloof. Something which is not at all helped by her untreated, yet admittedly mild ADHD. %GIVEN%'s parents, in contrast to Yu's globetrotting parents, are very much involved in her life."
         }
-    },
-    "recurring":{
-
     }
 }
