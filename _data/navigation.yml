@@ -1,5 +1,8 @@
 ﻿- name: About WHII
   link: /info/
+  dropdown:
+  - name: VA Application
+    link: /info/applications/
 - name: Roles
   link: /characters/
   dropdown: 

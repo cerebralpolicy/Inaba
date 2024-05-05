@@ -46,6 +46,7 @@
 </head>
 
     <body>
+        
         <nav
     class="navbar is-primary "
     x-data="{ openNav: false }"
@@ -75,10 +76,20 @@
                 
                     
                         
-                            <a
-                                href="/info/"
-                                class="navbar-item "
-                            >About WHII</a>
+                            <div class="navbar-item has-dropdown is-hoverable ">
+                                <a
+                                    href="/info/"
+                                    class="navbar-link "
+                                >About WHII</a>
+                                <div class="navbar-dropdown">
+                                    
+                                        <a
+                                            href="/info/applications/"
+                                            class="navbar-item "
+                                        >VA Application</a>
+                                    
+                                </div>
+                            </div>
                         
                     
                         
@@ -134,7 +145,6 @@
     
 
 </div>
-
                     </div>
                     
                 </div>
