@@ -5,3 +5,9 @@ permalink: pretty
 theme-color: '#212121'
 
 url: https://cerebralpolicy.github.io/WHII
+
+defaults:
+  - scope:
+      path: "assets/images"
+    values:
+      image: true

@@ -1,4 +1,4 @@
-{%- comment -%}<!-- Assign Character -->{%- endcomment -%}
+{%- comment -%}<!-- Assign Variables -->{%- endcomment -%}
   {%- unless include.get == nil -%}
     {%- assign test = "Dynamic" -%}
     {%- assign lookup = {{include.get}} -%}
@@ -8,26 +8,38 @@
     {%- assign lookup = 'Yukiko_Amagi' -%}
     {%- assign db = db -%}
   {%- endunless -%}
-{%- comment -%}<!-- Assign Character -->{%- endcomment -%}
+  {%- assign portraits = site.static_files | where: "image", true -%}
+{%- comment -%}<!-- Assign Variables -->{%- endcomment -%}
 {%- for char in db -%}
+  {%- comment -%}<!-- Static File Check -->>{%- endcomment -%}
   {%- assign TZ = "Japan" -%} 
   {%- assign Birthday = char.Born | date: "%B %e, %Y"| replace: '  ', ' ' -%} 
   {%- assign Birth = char.Born | date: "%s" -%} 
   {%- assign SetIn = "2023-05-01"| date: "%s" -%}
   {%- assign Age = SetIn | minus: Birth | date: "%Y" | times:1 | minus: 1970 -%}
+  {%- capture FullName -%}{{char.Name_EN['Given']}} {{char.Name_EN['Family']}}{%- endcapture -%}
   <div class="charbio pseudo-elem">
     {%- capture infobox %}
     <div class="infobox">
       <table>
         <tr>
-          <th colspan="2">{{char.Name_EN['Given']}} {{char.Name_EN['Family']}}</th>
+          <th colspan="2">{{FullName}}</th>
         </tr>
         <tr>
           <td colspan="2">{{char.Name_JP}}</td>
         </tr>
         <tr>
           <td colspan="2">
-            <img src="..\..\assets\images\{{char.ID}}.png" width="128" />
+            {%- assign placeholderURL = "http://placehold.co/128x128/ffd000/08a1b5.png?text=Placeholder\nPortrait" -%}
+            {%- assign imageURL = placeholderURL -%}
+            {%- for portrait in portraits -%}
+              {%- if portrait.basename != char.ID -%}
+                {%- continue -%}
+              {%- else -%}
+                {%- assign imageURL = portrait.path | prepend: '../..'  -%}
+              {%- endif -%}
+            {%- endfor -%}
+            <img src="{{imageURL}}" width="128" alt="{{FullName}}" />
           </td>
         </tr>
         <tr>

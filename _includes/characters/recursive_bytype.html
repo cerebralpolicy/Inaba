@@ -1,13 +1,31 @@
 {%- comment -%}<!-- Assign Character -->{%- endcomment -%}
   {%- assign lookup = 'Main' -%}
-  {%- unless include.get == blank -%}
+  {%- unless include.lookup == nil -%}
     {%- assign lookup = {{include.lookup}} -%}
     {%- assign db = site.data.json.characters.db | where: 'Type', lookup -%}
   {%- else -%}
     {%- assign db = db | where: 'Type', lookup -%}
   {%- endunless -%}
 {%- comment -%}<!-- Assign Character -->{%- endcomment -%}
+{%- comment -%}<!-- SORT -->>{%- endcomment -%}
+{%- assign grouped = db | group_by: 'Appears' -%}
+{%- for episode in grouped -%}
+    {%- assign sorted = episode['items'] | sort: 'ID_Sort' -%}
+    {%- if forloop.first -%}
+        {%- assign db = sorted -%}
+    {%- else -%}
+        {%- assign db = db | concat: sorted -%}
+    {%- endif -%}
+{%- endfor -%}
 {%- for character in db -%}
     {%- assign ID = character.ID -%}
-    {%- include characters/single_byname.html get = ID -%}
+    {%- assign iter = forloop.index | modulo: 2 -%}
+    {%- unless iter == 1 -%}
+        {%- include characters/single_byname.html get = ID -%}
+    {%- else -%}
+        {%- include characters/single_byname.html get = ID box = "right"-%}
+    {%- endunless -%}
+    {%- unless forloop.last -%}
+        {%- include divider.html -%}
+    {%- endunless -%}
 {%- endfor -%}

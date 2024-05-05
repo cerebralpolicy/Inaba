@@ -7,10 +7,6 @@ anchorHeads: true
 ---
 {% include notification.html 
 message="This site is currently under construction"  %}
-{%- include characters/single_byname.html get="Yukiko_Amagi" box="right"-%}
-{%- include divider.html -%}
-{%- include characters/single_byname.html get="Nanako_Dojima" -%}
-{%- include divider.html -%}
-{%- include characters/single_byname.html get="Kotone_Narukami" box="right" -%}
+{%- include characters/recursive_bytype.html lookup="Main" -%}
 {% include notification.html 
 message="More will be added."  %}
