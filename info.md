@@ -5,4 +5,5 @@ subtitle: The page subtitle
 description: This is the meta description for this page and will help it appear in search engines
 hide_hero: true
 ---
-Some text
+{% include notification.html 
+message="This site is currently under construction"  %}
